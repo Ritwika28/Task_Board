@@ -1,6 +1,6 @@
 <div>
   <h3 class="header-text donelist-header">I did it!</h3>
-  <div class="doneListWrap">
+  <div class="doneListWrap" aria-label="done list">
     <div class="doneListItem" *ngFor="let done of doneList; let i = index">
       {{ done.todo }}
     </div>
@@ -8,16 +8,28 @@
 </div>
 <div *ngIf="todoList.length > 0">
   <h3 class="header-text todolist-header">To Do</h3>
-  <div class="todoListWrap" [formGroup]="todoListform">
+  <div
+    class="todoListWrap"
+    [formGroup]="todoListform"
+    role="form"
+    aria-label="todo list"
+  >
     <div
       class="todoListItem"
+      role="list"
       formArrayName="todoListArr"
       *ngFor="let list of todoFormArray.controls; let i = index"
     >
-      <label [formGroupName]="i">
-        <input type="checkbox" formControlName="completed" />
-        {{ i + 1 }}.{{ todoList[i].todo }}
-      </label>
+      <div [formGroupName]="i" role="listitem">
+        <input
+          type="checkbox"
+          formControlName="completed"
+          [id]="'checkbox-' + i"
+        />
+        <label [for]="'checkbox-' + i">
+          {{ i + 1 }}.{{ todoList[i].todo }}
+        </label>
+      </div>
     </div>
   </div>
 </div>

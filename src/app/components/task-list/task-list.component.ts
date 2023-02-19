@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TaskboardService } from 'src/app/services/taskboard.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { TodoListCategory } from 'src/app/model/todoList.model';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnDestroy {
   constructor(
     private taskboardService: TaskboardService,
     private fb: FormBuilder
